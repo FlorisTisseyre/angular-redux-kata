@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgRedux, select } from '@angular-redux/store';
-import { IAppState } from '../store';
-import { REMOVE_ALL_TODOS } from '../actions';
 
 @Component({
   selector: 'app-todo-overview',
@@ -9,16 +6,14 @@ import { REMOVE_ALL_TODOS } from '../actions';
   styleUrls: ['./todo-overview.component.css']
 })
 export class TodoOverviewComponent implements OnInit {
-  @select() todos;
-  @select() lastUpdate;
 
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
   clearTodos() {
-    this.ngRedux.dispatch({type: REMOVE_ALL_TODOS});
+    // TODO : kata
   }
 
 }
