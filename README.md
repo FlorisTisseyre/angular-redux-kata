@@ -1,28 +1,40 @@
-# Angularredux01
+# Angular redux kata
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.1.
+The goal of this kata is to link the empty interface to data thanks to redux.
 
-## Development server
+## Set up
+1. Install dependencies `npm install`
+2. Serve the application `yarn start`
+3. Navigate to `http://localhost:4200/`
+4. Check that you have an interface with no data
+5. Install redux `npm install redux @angular-redux/store —save`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Step 1 - Create a state
+1. Look at how Todo-List and Todo-Overview components are structured
+2. In a store.ts, create an interface IAppState that will contain the state of the application. Start as simple as possible
+3. Create also an initial state
 
-## Code scaffolding
+## Step 2 - Create the simplest reducer possible
+1. Create a function reducer : (station, action) => state
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Step 3 - Activate the Application Store
+1. Add NgReduxModule to the imports array
+2. Inject NgRedux<IAppState> in the constructor and configure store on it
 
-## Build
+## Step 4 - Attach state to a component
+1. In a component add ngRedux to the constructor
+2. Decorate with `select()` a member of the component.
+   Ex : `select() lastUpdate;`
+3. Check that you see the result on the web page
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Step 5 - Create action types and change the state
+1. Create your first action
+2. Implement how it change the state in the reducer
+3. Call the reducer from a component.
+   Ex : `this.ngRedux.dispatch({type: ADD_TODO, todo: this.model});`
+3. Verify that it produce a change on the web page
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Step 6 - Expand reducer to every action in the interface
+Step-by-step, do either :
+1. State -> Attach
+2. Action -> Reducer -> Call from component
